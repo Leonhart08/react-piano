@@ -1,0 +1,72 @@
+$black: #202020;
+$grey: #282828;
+$secondary: #0277BD;
+.DashBoardWrapper{
+	width: 80%;
+	padding: 1rem;
+	h3 {
+		color: $secondary;
+		font-size: 1.5rem;
+		text-transform: uppercase;
+		letter-spacing: 0.5rem;
+		margin: 1rem 0rem;
+	}
+}
+
+.input-section{
+	width: 40%;
+	display:flex;
+	flex-direction: row;
+	flex-direction: flex-start;
+	justify-content: space-between;
+	h4{
+		color: lighten($secondary, 20);
+		font-size: 1.0rem;
+		text-transform: uppercase;
+		letter-spacing: 0.25rem;
+		padding-left: 2px;
+		margin: 1rem 0rem;
+	}		
+}
+
+.checkbox-section{
+	width: 45%;
+	display:flex;
+	flex-direction: column;
+	flex-direction: flex-start;
+	justify-content: space-between;
+	margin: 1rem 0rem;
+	label{
+		font-size: 0.75rem;
+		color: $secondary;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+	}
+	.checkbox-item {
+		display:flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		margin: 0.75rem 0rem;
+		.checkbox {
+			width: 1.2rem;
+			height: 1.2rem;
+			border: 1px solid #CCCCCC;
+			border-radius: 5px;
+			margin-right: 0.5rem;
+			cursor: pointer;
+			transition: border-color, background-color 0.3s;
+		}
+		.checkbox:hover{
+			border: 1px solid $secondary;
+		}
+		.checked{
+			background-color: $secondary;
+			transform: background-color 3s;
+			border: 1px solid #E0F2F1;
+		}
+		.checked:hover{
+			border: 1px solid #E0F2F1;
+		}
+	}
+}
