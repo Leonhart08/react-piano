@@ -1,24 +1,34 @@
-import React from 'react';
+import React, { memo } from 'react';
+import { isEqual } from 'lodash';
 import './PianoKey.scss';
+
+const arePropsEqual = (prevProps, nextProps) => isEqual(prevProps, nextProps); 
+
+const getKeyStyle = (note) => {
+  const keyColor = note.label.includes('#') ? 'black-key-style' : 'white-key-style'; 
+  const keyStatus = note.status === 'highlight' ? 'key-highlight' : '';
+  const isActive = note.active ? 'key-active' : '';
+  return `key ${ keyColor } ${ keyStatus } ${isActive}`;
+}
 
 const PianoKey= (props) => {
   const { 
-    options, 
-    note, 
+    note,
+    showKeyLabel,
+    showNoteLabel, 
     handleClick 
   } = props;
-  const isBlackKey = note.label.includes('#');
+  
   return (
     <div className='keyWrapper'>
-      <div 
-        className={`key ${ !isBlackKey ? 'white-key-style' : 'black-key-style'} ${(note.status === 'highlight') ? 'key-highlight' : ''} ${note.active ? 'key-active' : ''}`}
-        onClick={() => {handleClick(note)}}
-      >
-        <span style={{opacity: 0.6}}>{options.showKeyLabel && note.keyMap}</span>
-        <span style={{fontWeight: 'bold'}}>{options.showNoteLabel && note.label}</span>
+      <div  className={getKeyStyle(note)} onClick={() => {handleClick(note)}}>
+        <span style={{opacity: 0.6}}>{showKeyLabel && note.keyMap}</span>
+        <span style={{fontWeight: 'bold'}}>{showNoteLabel && note.label}</span>
       </div>
     </div>
   );
 }
 
-export default PianoKey;
+
+
+export default memo(PianoKey, arePropsEqual);

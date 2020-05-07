@@ -1,8 +1,12 @@
 import React from 'react';
-import { loadInstrument ,buildNotes } from './helpers/notes.js';
+import { loadInstrument , buildNotes } from './helpers/notes.js';
+import { INSTRUMENTS as instrumentList }  from './constants/instruments.js';
 import { isEqual } from 'lodash';
+import Select from 'react-select';
 import './PianoKeyboard.scss';
 import PianoKey from './PianoKey.js';
+import PianoSettings from './PianoSettings.js';
+
 const KEYNUMBERS = 36;
 
 class PianoKeyboard extends React.Component {
@@ -12,25 +16,33 @@ class PianoKeyboard extends React.Component {
       octave: 2,
       notes: buildNotes(2, KEYNUMBERS, props.options),
       instrument: null,
+      instrumentName: 'acoustic_grand_piano',
       activeNotes: [],
     }
     this.playNote = this.playNote.bind(this);
+    this.stopNote = this.stopNote.bind(this);
     this.mapKeyToIndex = this.mapKeyToIndex.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleSettingsUpdate = this.handleSettingsUpdate.bind(this);
   }
 
   componentDidMount() {
-    loadInstrument().then(instrument => this.setState({instrument: instrument}));
-    window.addEventListener('keydown', this.handleKeyDown);
+    const { instrumentName } = this.state;
+    loadInstrument(instrumentName).then(instrument => this.setState({instrument: instrument}));
+    window.addEventListener('keydown', (event) => !event.repeat ? this.handleKeyDown(event) : null);
     window.addEventListener('keyup', this.handleKeyUp);
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps, prevState){
     const { options: prevOptions } = prevProps;
     const { options } = this.props;
     const { octave } = this.state;
-    if(!isEqual(prevOptions,options)) this.setState({notes: buildNotes(octave, KEYNUMBERS, options)})
+    if(!isEqual(prevOptions, options)) this.setState({notes: buildNotes(octave, KEYNUMBERS, options)})
+
+    if(!isEqual(this.state.instrumentName, prevState.instrumentName)){
+      loadInstrument(this.state.instrumentName).then(instrument => this.setState({instrument: instrument}));
+    }
   }
   componentWillUnmount(){
     window.removeEventListener('keydown', this.handleKeyDown);
@@ -60,11 +72,17 @@ class PianoKeyboard extends React.Component {
         })
       )}
     );
+    return note ? this.stopNote(note) : null;
   }
 
   playNote(note) {
     const { instrument } = this.state;
-    return instrument && instrument.play(note.label);
+    return instrument && instrument.play(note.label, -1, {release: 2});
+  }
+
+  stopNote(note) {
+    const { instrument } = this.state;
+    return instrument && instrument.stop();
   }
 
   mapKeyToIndex(key){
@@ -72,38 +90,29 @@ class PianoKeyboard extends React.Component {
     return notes.find(note => key === note.keyMap);
   }
 
+  handleSettingsUpdate(updatedSettings){
+    const { options } = this.props;
+    const { octave, instrumentName } = updatedSettings;
+    console.log(updatedSettings);
+    return this.setState({
+      ...(octave && { octave }),
+      ...(instrumentName && { instrumentName }),
+      ...(octave && {notes: buildNotes(octave, KEYNUMBERS, options)}),
+    });
+  }
+
   render() {
     const { options } = this.props;
-    const {octave, notes} = this.state;
+    const {octave, notes, instrumentName} = this.state;
+    console.log(octave);
     return (
       <div className="container">
         <div className="left-border"></div>
-        <div className="options-section">
-          <div className="wheels-section">
-            <div className="wheel-item"></div>
-            <div className="wheel-item"></div>
-          </div>
-          <div className="buttons-section">
-            <div 
-              className={`button-item button-status-${2 - octave }`}
-              onClick={() => { octave > 0 && this.setState({
-                octave: octave - 1,
-                notes: buildNotes(octave - 1, KEYNUMBERS, options)
-              })}}
-            >
-
-            </div>
-            <div className="button-light"></div>
-            <div 
-              className={`button-item button-status-${octave - 2}`}
-              onClick={() => { octave < 4 && this.setState({
-                octave: octave + 1,
-                notes: buildNotes(octave + 1, KEYNUMBERS, options)
-              })}}
-            >
-            </div>
-          </div>
-        </div>
+        <PianoSettings 
+          octave={octave}
+          instrumentName={instrumentName}
+          handleUpdate={this.handleSettingsUpdate}
+        />
         <div className="piano-section">
           <div className="top-section"><div></div></div>
           <div className="notes-section">
@@ -111,8 +120,9 @@ class PianoKeyboard extends React.Component {
               return(
                 <div key={index}>
                   <PianoKey 
-                    options={options}
                     note={note}
+                    showNoteLabel={options.showNoteLabel}
+                    showKeyLabel={options.showKeyLabel}
                     handleClick={this.playNote} 
                   />
                 </div>

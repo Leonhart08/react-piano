@@ -6,8 +6,8 @@ import { KEYBOARDMAP } from "../constants/keyboardMap.js";
 const key2Frequency = (key) => Math.pow(2,(key - 49) / 12) * 440;
 const isKeyInScale = (scale, key) => scale.includes(TONES[(key - 4)%12]) ? 'highlight' : 'normal';
 
-export const loadInstrument = async () => {
-	const player = await SoundFontPlayer.instrument(new AudioContext(), 'acoustic_grand_piano');
+export const loadInstrument = async (instrumentName) => {
+	const player = await SoundFontPlayer.instrument(new AudioContext(), instrumentName);
 	return player;
 };
 
