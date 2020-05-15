@@ -1,0 +1,31 @@
+.header-container{
+	width: 100%;
+	background-color: #283593;
+}
+
+.navigator{
+	display:flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	padding-left: 8rem;
+	.navigator-item {
+		font-size: 20px;
+		text-transform: uppercase;
+		color: white;
+		letter-spacing: 4px;
+		text-align: center;
+		vertical-align: center;
+		padding: 1.25rem 0rem;
+		width: 10rem;
+		cursor: pointer;
+	}
+
+	.navigator-item:hover{
+		background-color: lighten(#283593, 10);
+	}
+
+	.active {
+		background-color: lighten(#283593, 25);;
+	}
+}

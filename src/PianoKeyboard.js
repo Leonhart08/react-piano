@@ -93,7 +93,6 @@ class PianoKeyboard extends React.Component {
   handleSettingsUpdate(updatedSettings){
     const { options } = this.props;
     const { octave, instrumentName } = updatedSettings;
-    console.log(updatedSettings);
     return this.setState({
       ...(octave && { octave }),
       ...(instrumentName && { instrumentName }),
@@ -104,7 +103,6 @@ class PianoKeyboard extends React.Component {
   render() {
     const { options } = this.props;
     const {octave, notes, instrumentName} = this.state;
-    console.log(octave);
     return (
       <div className="container">
         <div className="left-border"></div>

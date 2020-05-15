@@ -4,24 +4,35 @@ import './InfoDisplay.scss';
 
 const InfoDisplay= (props) => {
   const { options } = props;
-  const { root, scale } = options;
-  const { name, values } = scale;
+  const { currentDisplay, root } = options;
+  const displayName = currentDisplay.slice(0, -1);
+  const display = options[displayName];
+
+  const getTitle = name => (
+    <div className='title-section'>
+      <h2>{`${TONES[root]} ${name}`}</h2>
+    </div>
+  );
+
+  const getNotes = (values) => (
+    <div className='scale-section'>
+      <span>{`${currentDisplay} notes :`}</span>
+      {values.map(value => <span>{`${TONES[value]}`}</span>)} 
+    </div>
+  );
+
+  const getNotesPlaceHolder = (values) => (
+    <div className='scale-section-placeholder'>
+      <span>{`Select a ${displayName}`}</span>
+    </div>
+  );
 
   return (
     <div className='info-wrapper'>
       <div className='title-section'>
-        <h2>{name && `${TONES[root]} ${name}`} </h2>
+        {display && getTitle(display.name)}
       </div>
-      <div className='scale-section'>
-      { values && values.map(value => {
-        return(
-          <span>
-            {TONES[(root + value)%12]}
-          </span>
-        )}
-      )
-      }
-      </div>
+        {display ? getNotes(display.values) : getNotesPlaceHolder()}
     </div>
   );
 }

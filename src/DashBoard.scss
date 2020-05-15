@@ -2,7 +2,7 @@ $black: #202020;
 $grey: #282828;
 $secondary: #0277BD;
 .DashBoardWrapper{
-	width: 80%;
+	width: 97%;
 	padding: 1rem;
 	h3 {
 		color: $secondary;
@@ -14,11 +14,13 @@ $secondary: #0277BD;
 }
 
 .input-section{
-	width: 40%;
+	width: 100%;
 	display:flex;
 	flex-direction: row;
 	flex-direction: flex-start;
 	justify-content: space-between;
+	padding-left: 1rem;
+	
 	h4{
 		color: lighten($secondary, 20);
 		font-size: 1.0rem;
@@ -36,6 +38,7 @@ $secondary: #0277BD;
 	flex-direction: flex-start;
 	justify-content: space-between;
 	margin: 1rem 0rem;
+	padding-left: 1rem;
 	label{
 		font-size: 0.75rem;
 		color: $secondary;

@@ -1,25 +1,9 @@
 import React from 'react';
+import RootSelector from './RootSelector.js';
 import './DashBoard.scss';
 import Select from 'react-select';
 import { SCALES } from './constants/scales.js';
 import { TONES } from './constants/tones.js';
-
-
-const customStyles = {
-   option: (provided, state) => ({
-    ...provided,
-    padding: '0.75rem',
-    letterSpacing: '1px',
-  }),
-  container: (provided, state) => ({
-    ...provided,
-    width: '15rem',
-  }),
-  valueContainer: (provided, state) => ({
-    ...provided,
-    padding: '0.75rem',
-  }),
-}
 
 const DashBoard= (props) => {
   const { options, handleUpdate } = props;
@@ -31,16 +15,10 @@ const DashBoard= (props) => {
     <div className='DashBoardWrapper'>
       <h3> Options </h3>
       <div className='input-section'>
-        <div>
-          <h4> Root </h4>
-          <Select 
-            options={keyOptions}
-            value={keyOptions[root]}
-            isSearchable={false}
-            styles={customStyles}
-            onChange={(event) => handleUpdate({...options, root: event.value})}
-          />
-        </div>
+        <RootSelector
+          selected={keyOptions[root]} 
+          handleChange={event => handleUpdate({...options, root: event.value})}
+        />
         <div>
           <h4> Scales </h4>
           <Select 
@@ -48,7 +26,6 @@ const DashBoard= (props) => {
             placeholder={'Select scale...'}
             value={scaleOptions.find(option => scale && (option.label === scale.name))}
             isSearchable={false}
-            styles={customStyles}
             onChange={(event) => handleUpdate({...options, scale: { name: event.label , values: event.value}})}
           />
         </div>
