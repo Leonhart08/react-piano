@@ -1,6 +1,5 @@
 import React from 'react';
-import { TONES } from './constants/tones.js';
-import './InfoDisplay.scss';
+import { TONES } from '../constants/tones.js';
 
 const InfoDisplay= (props) => {
   const { options } = props;

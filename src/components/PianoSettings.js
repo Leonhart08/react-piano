@@ -1,7 +1,6 @@
 import React from 'react';
-import { INSTRUMENTS as instrumentList }  from './constants/instruments.js';
+import { INSTRUMENTS as instrumentList }  from '../constants/instruments.js';
 import Select from 'react-select';
-import './PianoSettings.scss';
 
 const GREEN = "#76FF03";
 const customStyles = {

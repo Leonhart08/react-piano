@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Header.scss';
 
 class Header extends React.Component {
   constructor(props){

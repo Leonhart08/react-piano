@@ -1,9 +1,8 @@
 import React from 'react';
-import { loadInstrument , buildNotes } from './helpers/notes.js';
-import { INSTRUMENTS as instrumentList }  from './constants/instruments.js';
+import { loadInstrument , buildNotes } from '../helpers/notes.js';
+import { INSTRUMENTS as instrumentList }  from '../constants/instruments.js';
 import { isEqual } from 'lodash';
 import Select from 'react-select';
-import './PianoKeyboard.scss';
 import PianoKey from './PianoKey.js';
 import PianoSettings from './PianoSettings.js';
 

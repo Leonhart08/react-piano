@@ -1,8 +1,7 @@
 import React from 'react';
-import './ChordsDashBoard.scss';
 import Select from 'react-select';
-import { CHORDS } from './constants/chords.js';
-import { TONES } from './constants/tones.js';
+import { CHORDS } from '../constants/chords.js';
+import { TONES } from '../constants/tones.js';
 
 const customStyles = {
    option: (provided, state) => ({

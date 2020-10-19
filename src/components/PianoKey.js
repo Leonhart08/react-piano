@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { isEqual } from 'lodash';
-import './PianoKey.scss';
 
 const arePropsEqual = (prevProps, nextProps) => isEqual(prevProps, nextProps); 
 

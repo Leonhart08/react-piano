@@ -1,7 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import './RootSelector.scss';
-import { TONES } from './constants/tones.js';
+import { TONES } from '../constants/tones.js';
 
 const RootSelector= (props) => {
   const { selected, handleChange } = props;

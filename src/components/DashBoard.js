@@ -1,9 +1,8 @@
 import React from 'react';
 import RootSelector from './RootSelector.js';
-import './DashBoard.scss';
 import Select from 'react-select';
-import { SCALES } from './constants/scales.js';
-import { TONES } from './constants/tones.js';
+import { SCALES } from '../constants/scales.js';
+import { TONES } from '../constants/tones.js';
 
 const DashBoard= (props) => {
   const { options, handleUpdate } = props;

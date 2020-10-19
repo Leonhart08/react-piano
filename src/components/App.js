@@ -5,7 +5,6 @@ import DashBoard from './DashBoard.js';
 import ChordsDashBoard from './ChordsDashBoard.js';
 import InfoDisplay from './InfoDisplay.js';
 import Header from './Header.js';
-import './App.scss';
 
 class App extends React.Component {
   constructor(props){
