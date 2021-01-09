@@ -38,12 +38,8 @@ class App extends React.Component {
         }}
         />
         <div className="wrapper"> 
-          <InfoDisplay
-            options={options}
-          />
-          <PianoKeyboard 
-            options={options}
-          />
+          <InfoDisplay options={options} />
+          <PianoKeyboard options={options} />
           {options.currentDisplay === 'scales'
             && (
             <DashBoard
