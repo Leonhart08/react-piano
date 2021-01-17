@@ -1,33 +1,24 @@
-import React, { memo } from 'react';
-import { isEqual } from 'lodash';
-
-const arePropsEqual = (prevProps, nextProps) => isEqual(prevProps, nextProps); 
+import React from 'react';
 
 const getKeyStyle = (note) => {
   const keyColor = note.label.includes('#') ? 'black-key-style' : 'white-key-style'; 
-  const keyStatus = note.status === 'highlight' ? 'key-highlight' : '';
   const isActive = note.active ? 'key-active' : '';
-  return `key ${ keyColor } ${ keyStatus } ${isActive}`;
+  return `key ${ keyColor } ${isActive}`;
 }
 
 const PianoKey= (props) => {
   const { 
     note,
-    showKeyLabel,
-    showNoteLabel, 
     handleClick 
   } = props;
   
   return (
     <div className='keyWrapper'>
-      <div  className={getKeyStyle(note)} onClick={() => {handleClick(note)}}>
-        <span style={{opacity: 0.6}}>{showKeyLabel && note.keyMap}</span>
-        <span style={{fontWeight: 'bold'}}>{showNoteLabel && note.label}</span>
-      </div>
+      <div className={getKeyStyle(note)} onClick={() => {handleClick(note)}} />
     </div>
   );
 }
 
 
 
-export default memo(PianoKey, arePropsEqual);
+export default PianoKey;

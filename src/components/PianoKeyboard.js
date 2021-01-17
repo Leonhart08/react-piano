@@ -1,8 +1,6 @@
 import React from 'react';
-import { loadInstrument , buildNotes } from '../helpers/notes.js';
-import { INSTRUMENTS as instrumentList }  from '../constants/instruments.js';
+import { buildNotes } from '../helpers/notes.js';
 import { isEqual } from 'lodash';
-import Select from 'react-select';
 import PianoKey from './PianoKey.js';
 import PianoSettings from './PianoSettings.js';
 
@@ -14,21 +12,20 @@ class PianoKeyboard extends React.Component {
     this.state = {
       octave: 2,
       notes: buildNotes(2, KEYNUMBERS, props.options),
-      instrument: null,
-      instrumentName: 'acoustic_grand_piano',
+      instrumentName: 'synth',
       activeNotes: [],
     }
+
     this.playNote = this.playNote.bind(this);
     this.stopNote = this.stopNote.bind(this);
     this.mapKeyToIndex = this.mapKeyToIndex.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.handleSettingsUpdate = this.handleSettingsUpdate.bind(this);
   }
 
   componentDidMount() {
-    const { instrumentName } = this.state;
-    loadInstrument(instrumentName).then(instrument => this.setState({instrument: instrument}));
     window.addEventListener('keydown', (event) => !event.repeat ? this.handleKeyDown(event) : null);
     window.addEventListener('keyup', this.handleKeyUp);
   }
@@ -37,10 +34,9 @@ class PianoKeyboard extends React.Component {
     const { options: prevOptions } = prevProps;
     const { options } = this.props;
     const { octave } = this.state;
-    if(!isEqual(prevOptions, options)) this.setState({notes: buildNotes(octave, KEYNUMBERS, options)})
 
-    if(!isEqual(this.state.instrumentName, prevState.instrumentName)){
-      loadInstrument(this.state.instrumentName).then(instrument => this.setState({instrument: instrument}));
+    if(!isEqual(prevOptions, options)) {
+      this.setState({notes: buildNotes(octave, KEYNUMBERS, options)})
     }
   }
   componentWillUnmount(){
@@ -58,7 +54,7 @@ class PianoKeyboard extends React.Component {
         })
       )}
     );
-    return note ? this.playNote(note) : null;
+    return note && this.playNote(note)
   }
 
   handleKeyUp(event) {
@@ -71,17 +67,22 @@ class PianoKeyboard extends React.Component {
         })
       )}
     );
-    return note ? this.stopNote(note) : null;
+    return note && this.stopNote(note)
+  }
+
+  handleClick(note) {
+    const { synth, frequency } = note
+    return synth.triggerAttackRelease(frequency, '4n')
   }
 
   playNote(note) {
-    const { instrument } = this.state;
-    return instrument && instrument.play(note.label, -1, {release: 2});
+    const { synth } = note
+    return synth.triggerAttack(note.frequency)
   }
 
   stopNote(note) {
-    const { instrument } = this.state;
-    return instrument && instrument.stop();
+    const { synth } = note;
+    return synth.triggerRelease()
   }
 
   mapKeyToIndex(key){
@@ -91,10 +92,10 @@ class PianoKeyboard extends React.Component {
 
   handleSettingsUpdate(updatedSettings){
     const { options } = this.props;
-    const { octave, instrumentName } = updatedSettings;
+    const { octave} = updatedSettings;
+
     return this.setState({
       ...(octave && { octave }),
-      ...(instrumentName && { instrumentName }),
       ...(octave && {notes: buildNotes(octave, KEYNUMBERS, options)}),
     });
   }
@@ -102,6 +103,7 @@ class PianoKeyboard extends React.Component {
   render() {
     const { options } = this.props;
     const {octave, notes, instrumentName} = this.state;
+
     return (
       <div className="container">
         <div className="left-border"></div>
@@ -111,7 +113,7 @@ class PianoKeyboard extends React.Component {
           handleUpdate={this.handleSettingsUpdate}
         />
         <div className="piano-section">
-          <div className="top-section"><div></div></div>
+          <div className="top-section"/>
           <div className="notes-section">
             {notes.map((note,index) => {
               return(
@@ -120,16 +122,16 @@ class PianoKeyboard extends React.Component {
                     note={note}
                     showNoteLabel={options.showNoteLabel}
                     showKeyLabel={options.showKeyLabel}
-                    handleClick={this.playNote} 
+                    handleClick={this.handleClick} 
                   />
                 </div>
                 )
               })
             }
           </div>
-          <div className="bottom-section"></div>
+          <div className="bottom-section"/>
         </div>
-        <div className="right-border"></div>
+        <div className="right-border"/>
       </div>
       );
     }

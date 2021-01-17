@@ -5,6 +5,7 @@ $outerRadius: 1rem;
 .container{
 	display:flex;
 	flex-direction:row;
+	margin: 3rem 0;
 }
 
 //------------------BORDER SECTION----------------//
@@ -34,6 +35,8 @@ $outerRadius: 1rem;
 	display:flex;
 	flex-direction:row;
 }
+
+//------------------TOP SECTION----------------//
 .top-section {
 	min-height: 4rem;
 	background-color: $black;
@@ -48,6 +51,7 @@ $outerRadius: 1rem;
 	}
 }
 
+//------------------BOTTOM SECTION----------------//
 .bottom-section{
 	height: 3rem;
 	background-color: #101010;

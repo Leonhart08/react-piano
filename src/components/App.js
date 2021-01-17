@@ -1,22 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import PianoKeyboard from './PianoKeyboard.js';
-import DashBoard from './DashBoard.js';
-import ChordsDashBoard from './ChordsDashBoard.js';
-import InfoDisplay from './InfoDisplay.js';
 import Header from './Header.js';
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      options:{
-        currentDisplay: 'scales',
+      options: {
+        currentDisplay: 'piano',
         root: 0,
-        scale: null,
-        chord: null,
-        showNoteLabel: false,
-        showKeyLabel: false,
       }
     }
   }
@@ -31,33 +23,12 @@ class App extends React.Component {
               ...options, 
               currentDisplay: display,
               root: 0,
-              scale: null,
-              chord: null, 
             } 
           })
         }}
         />
         <div className="wrapper"> 
-          <InfoDisplay options={options} />
           <PianoKeyboard options={options} />
-          {options.currentDisplay === 'scales'
-            && (
-            <DashBoard
-              options={options}
-              handleUpdate={(updatedOptions) => {
-                this.setState({options: updatedOptions})
-              }}
-            />)
-          }
-          {options.currentDisplay === 'chords'
-            && (
-            <ChordsDashBoard
-              options={options}
-              handleUpdate={(updatedOptions) => {
-                this.setState({options: updatedOptions})
-              }}
-            />)
-          }
         </div>
       </div>
     ); 

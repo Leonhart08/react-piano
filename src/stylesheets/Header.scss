@@ -9,15 +9,16 @@
 	justify-content: flex-start;
 	align-items: center;
 	padding-left: 8rem;
+
 	.navigator-item {
-		font-size: 20px;
+		font-size: 1.2rem;
 		text-transform: uppercase;
 		color: white;
 		letter-spacing: 4px;
 		text-align: center;
 		vertical-align: center;
-		padding: 1.25rem 0rem;
-		width: 10rem;
+		padding: 1.0rem 0rem;
+		width: 9rem;
 		cursor: pointer;
 	}
 
