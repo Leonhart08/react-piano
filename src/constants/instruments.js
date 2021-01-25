@@ -1,3 +1,6 @@
 export const INSTRUMENTS = [
-  "synth",
+  "sine",
+  "sawtooth",
+  "square",
+  "triangle",
 ]

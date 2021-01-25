@@ -12,6 +12,8 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-select": "^3.1.0",
+    "react-slider": "^1.1.4",
+    "react-tooltip": "^4.2.13",
     "tone": "^14.7.77"
   },
   "engines": {
@@ -26,6 +28,10 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "lint-staged": {
+    "*.scss": "stylelint",
+    "*.{js,jsx}": "eslint"
   },
   "browserslist": {
     "production": [

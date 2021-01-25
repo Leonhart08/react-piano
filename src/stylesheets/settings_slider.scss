@@ -1,0 +1,43 @@
+.slide-section {
+	padding: 0px 5px;
+}
+
+.slide-name-label {
+	p { 
+		text-transform: capitalize;
+		color: #CFD8DC;
+		font-family: monospace;
+		font-weight: bold;
+		margin: 6px 0px;
+		margin-left: 4px;
+		cursor: pointer;
+	}
+}
+.vertical-slider {
+	height: 100%;
+}
+
+.example-thumb {
+	height: 27px;
+	width: 27px;
+	line-height: 27px;
+	text-align: center;
+	background-color: #37474F	;
+	color: #ECEFF1;
+	border-radius: 100%;
+	font-size: 10px;
+	letter-spacing: 1px;
+	font-weight: bold;
+	font-family: monospace;
+	left: -5px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.example-track {
+	top: 50px;
+	bottom: 50px;
+	background-color: #101010;
+	border-radius: 999px;
+	width: 17px;
+}

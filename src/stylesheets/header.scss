@@ -1,6 +1,6 @@
 .header-container{
 	width: 100%;
-	background-color: #283593;
+	background-color: #37474F;
 }
 
 .navigator{
@@ -11,22 +11,22 @@
 	padding-left: 8rem;
 
 	.navigator-item {
-		font-size: 1.2rem;
+		font-size: 16px;
 		text-transform: uppercase;
 		color: white;
 		letter-spacing: 4px;
 		text-align: center;
 		vertical-align: center;
-		padding: 1.0rem 0rem;
-		width: 9rem;
+		padding: 12px 0px;
+		width: 140px;
 		cursor: pointer;
 	}
 
 	.navigator-item:hover{
-		background-color: lighten(#283593, 10);
+		background-color: lighten(#37474F, 10);
 	}
 
 	.active {
-		background-color: lighten(#283593, 25);;
+		background-color: lighten(#37474F, 15);
 	}
 }
