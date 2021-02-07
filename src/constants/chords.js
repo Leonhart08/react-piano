@@ -1,0 +1,136 @@
+export const CHORDS = [
+	{
+    name: 'Major',
+    suffix: '',
+		type: 'diatonic',
+		value: [0, 4, 7],
+	},
+	{
+    name: 'Minor',
+    suffix: 'm',
+		type: 'diatonic',
+		value: [0, 3, 7],
+	},
+	{
+    name: '7',
+    suffix: '7',
+		type: 'diatonic',
+		value: [0, 4, 7,10],
+	},
+	{
+    name: 'Major 7th',
+    suffix: 'maj7',
+		type: 'diatonic',
+		value: [0, 4, 7, 11],
+	},
+	{
+    name: 'minor 7th',
+    suffix: 'm7',
+		type: 'diatonic',
+		value: [0, 3, 7, 11],
+	},
+	{
+    name: '6th',
+    suffix: '6',
+		type: 'diatonic',
+		value: [0, 4, 7, 9],
+	},
+	{
+    name: 'minor 6th',
+    suffix: 'm6',
+		type: 'diatonic',
+		value: [0, 3, 7, 9],
+	},
+	{
+    name: '6/9',
+    suffix: '6/9',
+		type: 'diatonic',
+		value: [0, 4, 7, 9, 14],
+	},
+	{
+    name: '9',
+    suffix: '9',
+		type: 'diatonic',
+		value: [0, 4, 7, 10, 14],
+	},
+	{
+    name: 'minor 9th',
+    suffix: 'm9',
+		type: 'diatonic',
+		value: [0, 3, 7, 10, 14],
+	},
+	{
+    name: 'Major 9th',
+    suffix: 'Maj9',
+		type: 'diatonic',
+		value: [0, 4, 7, 11, 14],
+	},
+	{
+    name: 'add9',
+    suffix: 'add9',
+		type: 'diatonic',
+		value: [0, 4, 7, 14],
+	},
+	{
+    name: 'add2',
+    suffix: 'add2',
+		type: 'diatonic',
+		value: [0, 2, 4, 7],
+	},
+	{
+    name: 'sus4',
+    suffix: 'sus4',
+		type: 'diatonic',
+		value: [0, 5, 7],
+	},
+	{
+    name: 'sus2',
+    suffix: 'sus2',
+		type: 'diatonic',
+		value: [0, 2, 7],
+	},
+	{
+    name: '7b5 altered chord',
+    suffix: '7b5',
+		type: 'diatonic',
+		value: [0, 4, 6, 10],
+	},
+	{
+    name: 'm7b5 altered chord',
+    suffix: 'm7b5',
+		type: 'diatonic',
+		value: [0, 3, 6, 10],
+	},
+	{
+    name: '7+5 altered chord',
+    suffix: '7+5',
+		type: 'diatonic',
+		value: [0, 4, 8, 10],
+	},
+	{
+    name: 'diminished',
+    suffix: 'dim',
+		type: 'diatonic',
+		value: [0, 3, 6],
+	},
+	{
+    name: 'diminished 7th',
+    suffix: 'dim7',
+		type: 'diatonic',
+		value: [0, 3, 6, 9],
+	},
+	{
+    name: 'augmented',
+    suffix: 'aug7',
+		type: 'diatonic',
+		value: [0, 4, 8],
+	},
+	{
+    name: 'augmented 7th',
+    suffix: 'aug7',
+		type: 'diatonic',
+		value: [0, 4, 8, 10],
+	},
+
+	
+]

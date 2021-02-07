@@ -1,10 +1,12 @@
 
 $black: #202020;
 $grey: #37474F;
+
 .keyWrapper{
 	position:relative;
 	background-color: #101010;
 }
+
 .key {
 	display:flex;
 	flex-direction: column;
@@ -12,7 +14,6 @@ $grey: #37474F;
 	align-items: center;
 	z-index: 3;
 	border: 0.05rem solid $black;	
-	cursor: pointer;
 	transition: background 0.2s;
 	padding-bottom: 0.5rem;
 	span{
@@ -22,12 +23,16 @@ $grey: #37474F;
 	}
 }
 
-.key:hover{
-	background: linear-gradient( #FFCC80 10%, #FFCC80 10%);
+.key-enabled {
+	cursor: pointer;
 }
 
-.key:active{
-	background: linear-gradient( darken(#FFB74D,10)  10%, #FFB74D 10%);
+.key-enabled:hover{
+	background: linear-gradient( #FF8A65 10%, #FF8A65 10%);
+}
+
+.key-enabled:active{
+	background: linear-gradient( darken(#FF3D00,10)  10%, #FF3D00 10%);
 	color: white;
 }
 .white-key-style {
@@ -57,11 +62,11 @@ $grey: #37474F;
 }
 
 .key-highlight {
-	background: linear-gradient( darken(#FFE0B2,10) 10%, #FFE0B2 10%);
+	background: linear-gradient( darken(#FFCCBC,10) 10%, #FFCCBC 10%);
 	color: $black;
 }
 
 .key-active {
-	background: linear-gradient( darken(#FFB74D,10)  10%, #FFB74D 10%) !important;
+	background: linear-gradient( darken(#D84315,10)  10%, #D84315 10%) !important;
 	color: white;
 }

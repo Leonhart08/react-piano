@@ -1,11 +1,14 @@
-$black: #282828;
+$black: lighten(#282828, 5) ;
 $grey: #303030;
 $outerRadius: 1rem;
 
 .container{
 	display:flex;
 	flex-direction:row;
-	margin: 3rem 0;
+	justify-content: center;
+	margin-top: 50px;
+	margin-bottom: 10px;
+	width: 100%;
 }
 
 //------------------BORDER SECTION----------------//

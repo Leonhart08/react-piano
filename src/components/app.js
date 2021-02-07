@@ -15,9 +15,14 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <Header current={currentDisplay} />
+        <Header 
+          current={currentDisplay}
+          onClick={(display) => this.setState({ currentDisplay: display }) } 
+          />
         <div className="wrapper"> 
-          <PianoSection />
+          <PianoSection 
+            display={currentDisplay}
+          />
         </div>
       </div>
     ); 

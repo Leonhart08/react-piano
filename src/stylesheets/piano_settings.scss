@@ -1,4 +1,4 @@
-$black: #282828;
+$black: lighten(#282828, 5) ;
 $grey: #303030;
 $outerRadius: 1rem;
 
@@ -13,19 +13,20 @@ $outerRadius: 1rem;
 	padding-right: 1rem;
 	width: 17rem;
 
-	.wheels-section{
+	.wheels-section {
 		display:flex;
 		flex-direction: row;
 		justify-content: space-around;
-		width: 100%;
+		width: 90%;
 		margin-top: 4rem;
 		margin-bottom: 1.2rem;
 		height: 145px;
-		.wheel-item{
+
+		.wheel-item {
 			width: 3rem;
-			height: 11rem;
+			height: 10rem;
 			border-radius: 0.5rem;
-			background: linear-gradient(#101010 10%, $grey 10% 90%, #101010 90%);
+			background: linear-gradient(#101010 10%, lighten($grey, 5) 10% 90%, #101010 90%);
 		}
 	}
 

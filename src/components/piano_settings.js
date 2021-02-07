@@ -17,13 +17,13 @@ class PianoSettings extends React.Component {
 
   render() {
     const { instrumentsOptions } = this.state
-    const { octave, handleUpdateNotes, handleUpdateSettings, settings } = this.props;
+    const { display, octave, handleUpdateNotes, handleUpdateSettings, settings } = this.props;
     const { oscillator, envelope } = settings
 
     return (
       <div className="options-section">
         <div className="wheels-section">
-          { Object.entries(envelope).map(([name, values]) => {
+          {Object.entries(envelope).map(([name, values]) => {
             return (
               <SettingsSlider
                 key={name}
@@ -43,7 +43,7 @@ class PianoSettings extends React.Component {
         <div className="instruments-section">
           <Select 
             options={instrumentsOptions}
-            placeholder={'Select scale...'}
+            placeholder={'-'}
             value={instrumentsOptions.find(instrument => (instrument.label === oscillator.type))}
             isSearchable={false}
             styles={customSelectStyles}

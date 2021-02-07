@@ -3,7 +3,7 @@ export const KEY_NUMBERS = 36;
 
 export const INITIAL_SETTINGS = {
   oscillator : {
-    type : 'square'
+    type : 'triangle'
   } ,
   envelope: {
     attack : {
