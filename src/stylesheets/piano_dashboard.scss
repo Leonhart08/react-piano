@@ -33,10 +33,11 @@
     align-items: center;
     background-color: darken(#424242,5);
     color: #E0E0E0;
-    min-width: 70px;
-    min-height: 70px;
+    min-width: 100px;
+    min-height: 55px;
+    margin: 2px 0px;
     font-family: monospace;
-    font-size: 26px;
+    font-size: 2rem;
     border-right: 4px solid #1D1D1D;
     
     cursor: pointer;
@@ -80,17 +81,18 @@
   justify-content: center;
   flex-wrap: wrap;
   width: 80%;
+
   .list-item {
     display:flex;
     justify-content: center;
     align-items: center;
     background-color: darken(#424242,5);
     color: #E0E0E0;
-    min-width: 95px;
-    min-height: 70px;
-    margin: 5px;
+    min-width: 100px;
+    min-height: 55px;
+    margin: 2px 0px;
     font-family: monospace;
-    font-size: 26px;
+    font-size: 2rem;
     border-right: 4px solid #1D1D1D;
     cursor: pointer;
   
