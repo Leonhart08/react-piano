@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Tone from 'tone'
-import { buildNotes, updateChord } from '../helpers/notes.js';
+import { buildNotes, updateChord, updateScale } from '../helpers/notes.js';
 import { KEY_NUMBERS, INITIAL_SETTINGS } from '../constants/init_values.js'
 import PianoKeyboard from './piano_keyboard.js';
 import PianoDashboard from './piano_dashboard.js'
@@ -34,8 +34,27 @@ class PianoSection extends React.Component {
         ...(chordIndex !== null && { chord: chordIndex}),
         ...(noteIndex !== null && { root: noteIndex}),  
         notes: updateChord(notes, {
-          chordIndex: chordIndex !== null ? chordIndex : chord , 
           noteIndex: noteIndex !== null ? noteIndex : root, 
+          chordIndex: chordIndex !== null ? chordIndex : chord, 
+          octave
+        }) 
+      }
+    })
+  }
+
+  handleUpdateScale(params) {
+    const { noteIndex = null, scaleIndex = null } = params
+    const { keyboard } = this.state
+    const { notes, scale, root, octave } = keyboard
+
+    this.setState({ 
+      keyboard : { 
+        ...keyboard,
+        ...(scaleIndex !== null && { scale: scaleIndex}),
+        ...(noteIndex !== null && { root: noteIndex}),  
+        notes: updateScale(notes, {
+          noteIndex: noteIndex !== null ? noteIndex : root, 
+          scaleIndex: scaleIndex !== null ? scaleIndex : scale,
           octave
         }) 
       }
@@ -58,7 +77,8 @@ class PianoSection extends React.Component {
           display={display}
           player={player}
           keyboard={keyboard}
-          handleUpdateChord={(chordIndex)=>{ this.handleUpdateChord(chordIndex)}} 
+          handleUpdateChord={(params) =>{ this.handleUpdateChord(params)}} 
+          handleUpdateScale={(params) =>{ this.handleUpdateScale(params)}}
         />
       </div>
     ); 

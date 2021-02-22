@@ -2,6 +2,7 @@ import * as Tone from 'tone'
 import { TONES } from "../constants/tones.js";
 import { CHORDS } from "../constants/chords.js";
 import { KEYBOARDMAP } from "../constants/keyboard_map.js";
+import { SCALES } from '../constants/scales.js';
 
 const key2Frequency = (key) => Math.pow(2,(key - 49) / 12) * 440;
 
@@ -12,6 +13,14 @@ export const getChordNotes = (noteIndex, chordIndex) => {
 
 	return chordNotes.join(' - ')
 }
+
+export const getScaleNotes = (noteIndex, scaleIndex) => {
+	const scale = SCALES[scaleIndex]
+
+	const scaleNotes = scale.value.map(note => TONES[(noteIndex + note) % 12])
+
+	return scaleNotes.join(' - ')
+}
 export const getChordFrequencies = (noteIndex, chordIndex, octave) => {
 	const chord = CHORDS[chordIndex]
 	const shouldLowOctave = noteIndex >= 9;
@@ -20,6 +29,16 @@ export const getChordFrequencies = (noteIndex, chordIndex, octave) => {
 	
 	return chordFrequencies
 }
+
+export const getScaleFrequencies = (noteIndex, scaleIndex, octave) => {
+	const scale = SCALES[scaleIndex]
+	const shouldLowOctave = noteIndex >= 9;
+	const chordRoot = ((octave + 1)*12 + 4) + noteIndex + (shouldLowOctave ? -12 : 0);
+	const scaleFrequencies = [...scale.value, 12].map(note => key2Frequency(chordRoot + note))
+	
+	return scaleFrequencies
+}
+
 export const buildNotes = (octave, n = 12, options={}) => {
 	const keyOctave = 4 + octave*12;
 
@@ -49,6 +68,13 @@ const isKeyInChord = (chord, key, octave, root) => {
 	return chord.includes(key-chordRoot) ? 'highlight' : 'normal'
 };
 
+const isKeyInScale = (scale, key, octave, root) => {
+	const shouldLowOctave = root >= 9;
+	const scaleRoot = ((octave + 1)*12 + 4) + root + (shouldLowOctave ? -12 : 0);
+
+	return scale.includes(key-scaleRoot) ? 'highlight' : 'normal'
+};
+
 export const updateChord = (notes, params) => {
 	const { chordIndex, octave, noteIndex } = params;
 	const chord = CHORDS[chordIndex]
@@ -65,6 +91,26 @@ export const updateChord = (notes, params) => {
 			...note,
 			active: false,
 			status: isKeyInChord(chord.value, keyPosition, octave, noteIndex),
+		}
+	})
+}
+
+export const updateScale = (notes, params) => {
+	const { scaleIndex, octave, noteIndex } = params;
+	const scale = SCALES[scaleIndex]
+	const keyOctave = 4 + octave*12;
+	
+	if(scaleIndex === null || noteIndex === null) {
+		return notes
+	}
+
+	return notes.map((note, index) => {
+		const keyPosition = keyOctave + index;
+
+		return {
+			...note,
+			active: false,
+			status: isKeyInScale(scale.value, keyPosition, octave, noteIndex),
 		}
 	})
 }

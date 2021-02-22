@@ -13,6 +13,9 @@ class Header extends React.Component {
           <div className={`navigator-item ${current === 'chords' ? 'active' : ''}`} onClick={()=>{onClick('chords')}}>
             Chords
           </div>
+          <div className={`navigator-item ${current === 'scales' ? 'active' : ''}`} onClick={()=>{onClick('scales')}}>
+            Scales
+          </div>
         </div>
       </div>
     ); 
