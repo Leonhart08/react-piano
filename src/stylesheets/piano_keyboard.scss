@@ -9,8 +9,7 @@ $outerRadius: 1rem;
 	margin-top: 50px;
 	margin-bottom: 10px;
 	width: 100%;
-	overflow-x: auto;
-	zoom: 20%;
+	zoom: 90%;
 }
 
 //------------------BORDER SECTION----------------//
@@ -61,5 +60,12 @@ $outerRadius: 1rem;
 	height: 3rem;
 	background-color: #101010;
 	border-radius: 0rem 0rem 0.50rem 0.50rem;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .container{
+		zoom: 30%;
+	}
 }
 
