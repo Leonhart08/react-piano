@@ -7,6 +7,7 @@ class PianoDashboard extends React.Component {
   render(){
     const { display, ...otherProps } = this.props
 
+   
     return (
       <div className="piano-dashboard">
         {display === 'chords' && <ChordDashboard { ...otherProps } />}

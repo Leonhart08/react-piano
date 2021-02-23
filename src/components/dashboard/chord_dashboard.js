@@ -27,6 +27,7 @@ class ChordDashboard extends React.Component {
       <React.Fragment>
         <div className="chord-label-section">
           <div className="chord-label">
+            { window.innerWidth }
             {TONES[noteIndex]} {(chordIndex !== null) && CHORDS[chordIndex].name}
           </div>
           <div className="chord-play-button">

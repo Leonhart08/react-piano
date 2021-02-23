@@ -25,7 +25,6 @@ class PianoKeyboard extends React.Component {
   componentDidMount() {
     window.addEventListener('keydown', (event) => !event.repeat ? this.handleKeyDown(event) : null);
     window.addEventListener('keyup', this.handleKeyUp)
-
     window.addEventListener('resize', e => this.setState({ responsive: window.matchMedia("(min-width: 768px)").matches }));
   }
 
