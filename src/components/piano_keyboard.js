@@ -122,6 +122,8 @@ class PianoKeyboard extends React.Component {
     const { display, keyboard } = this.props;
     const { octave, notes, settings, showNoteLabel, showKeyLabel } = keyboard;
 
+    console.log('responsive', responsive)
+    console.log(window.innerWidth)
     return (
       <div className="container">
         <div className="left-border"></div>
