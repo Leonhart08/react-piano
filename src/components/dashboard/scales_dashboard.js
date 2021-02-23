@@ -58,9 +58,9 @@ class ScalesDashboard extends React.Component {
           </div>
         </div>
 
-        <div className="chords-list-section">
-          <div className="chords-list-label"> scale </div>
-          <div className="chords-list-options">
+        <div className="scales-list-section">
+          <div className="scales-list-label"> scale </div>
+          <div className="scales-list-options">
             {(noteIndex !== null) && SCALES.map((scale, index) => {
               return ( <div 
                 className={`list-item ${scaleIndex === index ? 'list-item--active' : ''}`} 

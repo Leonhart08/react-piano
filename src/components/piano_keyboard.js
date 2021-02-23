@@ -1,18 +1,23 @@
 import React from 'react';
+import Modal from 'react-modal';
+
 import { updateNotes, updateNotesSynth, updatePolySynthSettings } from '../helpers/notes.js';
 import PianoKey from './piano_key.js';
 import PianoSettings from './piano_settings.js';
+import Settings from './icons/settings'
 
 class PianoKeyboard extends React.Component {
   constructor(props){
     super(props);
     
     this.state = {
-      responsive: window.matchMedia("(min-width: 1200px)").matches
+      settingsModal: false,
+      responsive: this.getWindowsSize()
     }
 
     this.playNote = this.playNote.bind(this)
     this.stopNote = this.stopNote.bind(this)
+    this.sliceNotes = this.sliceNotes.bind(this)
     this.mapKeyToIndex = this.mapKeyToIndex.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.toggleActiveNote = this.toggleActiveNote.bind(this)
@@ -25,12 +30,25 @@ class PianoKeyboard extends React.Component {
   componentDidMount() {
     window.addEventListener('keydown', (event) => !event.repeat ? this.handleKeyDown(event) : null);
     window.addEventListener('keyup', this.handleKeyUp)
-    window.addEventListener('resize', e => this.setState({ responsive: window.matchMedia("(min-width: 1200px)").matches }));
+    window.addEventListener('resize', e => this.setState({ responsive: this.getWindowsSize() }));
   }
 
   componentWillUnmount(){
     window.removeEventListener('keydown', this.handleKeyDown)
     window.removeEventListener('keyup', this.handleKeyUp)
+  }
+
+  getWindowsSize() {
+    if(window.matchMedia("(min-width: 1200px)").matches) return 'desktop'
+    if(window.matchMedia("(min-width: 600px)").matches) return 'tablet'
+    return 'mobile'
+  }
+
+  sliceNotes(){
+    const { responsive } = this.state
+    if(responsive === 'desktop') return 0
+    if(responsive === 'tablet' ) return 5
+    return 11
   }
 
   toggleActiveNote(currentNote) {
@@ -118,14 +136,14 @@ class PianoKeyboard extends React.Component {
   }
 
   render() {
-    const { responsive } = this.state
+    const { responsive, settingsModal } = this.state
     const { display, keyboard } = this.props;
     const { octave, notes, settings, showNoteLabel, showKeyLabel } = keyboard;
 
     return (
       <div className="container">
         <div className="left-border"></div>
-          {responsive && 
+          {responsive === 'desktop' && 
             (<PianoSettings
               display={display} 
               octave={octave}
@@ -134,10 +152,48 @@ class PianoKeyboard extends React.Component {
               handleUpdateSettings={this.handleUpdateSettings}
             />)
           }
+          <Modal
+              isOpen={settingsModal}
+              onRequestClose={() => { this.setState({ settingsModal: false })}}
+              style={{
+                overlay: {
+                  zIndex: 5,
+                  backgroundColor: 'rgba(53,53,53,0.75)'
+                },
+                content : {
+                  top                   : '50%',
+                  left                  : '50%',
+                  right                 : 'auto',
+                  bottom                : 'auto',
+                  marginRight           : '-50%',
+                  paddingBottom         : '43px',
+                  transform             : 'translate(-50%, -50%)',
+                  backgroundColor: '#353535',
+                }
+              }}
+              contentLabel="Example Modal"
+            >
+              <div>
+                <PianoSettings
+                  display={display} 
+                  octave={octave}
+                  settings={settings}
+                  handleUpdateNotes={this.handleUpdateNotes}
+                  handleUpdateSettings={this.handleUpdateSettings}
+                />
+              </div>
+          </Modal>
+
         <div className="piano-section">
-          <div className="top-section"/>
+          <div className="top-section">
+            {responsive !== 'desktop' && 
+              <div className="settings-button">
+                <Settings onClick={() => { this.setState({ settingsModal: true })}} />
+              </div>
+            }
+          </div>
           <div className="notes-section">
-            {notes.slice(11).map((note,index) => {
+            {notes.slice(this.sliceNotes()).map((note,index) => {
               return(
                 <div key={index}>
                   <PianoKey
