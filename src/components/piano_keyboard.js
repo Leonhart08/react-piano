@@ -6,6 +6,10 @@ import PianoSettings from './piano_settings.js';
 class PianoKeyboard extends React.Component {
   constructor(props){
     super(props);
+    
+    this.state = {
+      responsive: window.matchMedia("(min-width: 768px)").matches
+    }
 
     this.playNote = this.playNote.bind(this)
     this.stopNote = this.stopNote.bind(this)
@@ -21,6 +25,8 @@ class PianoKeyboard extends React.Component {
   componentDidMount() {
     window.addEventListener('keydown', (event) => !event.repeat ? this.handleKeyDown(event) : null);
     window.addEventListener('keyup', this.handleKeyUp)
+
+    window.addEventListener('resize', e => this.setState({ responsive: window.matchMedia("(min-width: 768px)").matches }));
   }
 
   componentWillUnmount(){
@@ -113,23 +119,26 @@ class PianoKeyboard extends React.Component {
   }
 
   render() {
-    const { player, display, keyboard } = this.props;
+    const { responsive } = this.state
+    const { display, keyboard } = this.props;
     const { octave, notes, settings, showNoteLabel, showKeyLabel } = keyboard;
 
     return (
       <div className="container">
         <div className="left-border"></div>
-        <PianoSettings
-          display={display} 
-          octave={octave}
-          settings={settings}
-          handleUpdateNotes={this.handleUpdateNotes}
-          handleUpdateSettings={this.handleUpdateSettings}
-        />
+          {responsive && 
+            (<PianoSettings
+              display={display} 
+              octave={octave}
+              settings={settings}
+              handleUpdateNotes={this.handleUpdateNotes}
+              handleUpdateSettings={this.handleUpdateSettings}
+            />)
+          }
         <div className="piano-section">
           <div className="top-section"/>
           <div className="notes-section">
-            {notes.map((note,index) => {
+            {notes.slice(5).map((note,index) => {
               return(
                 <div key={index}>
                   <PianoKey
