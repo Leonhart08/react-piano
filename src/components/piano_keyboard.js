@@ -122,8 +122,6 @@ class PianoKeyboard extends React.Component {
     const { display, keyboard } = this.props;
     const { octave, notes, settings, showNoteLabel, showKeyLabel } = keyboard;
 
-    console.log('responsive', responsive)
-    console.log(window.innerWidth)
     return (
       <div className="container">
         <div className="left-border"></div>
@@ -139,7 +137,7 @@ class PianoKeyboard extends React.Component {
         <div className="piano-section">
           <div className="top-section"/>
           <div className="notes-section">
-            {notes.slice(5).map((note,index) => {
+            {notes.slice(11).map((note,index) => {
               return(
                 <div key={index}>
                   <PianoKey
