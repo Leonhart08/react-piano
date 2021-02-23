@@ -4,7 +4,6 @@ export const customSelectStyles = {
     ...provided,
     width: '15rem',
     borderRadius: '3px',
-    backgroundColor: 'red',
   }),
 
   menuList: (provided, state) => ({

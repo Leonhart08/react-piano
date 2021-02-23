@@ -17,7 +17,7 @@ class PianoSettings extends React.Component {
 
   render() {
     const { instrumentsOptions } = this.state
-    const { display, octave, handleUpdateNotes, handleUpdateSettings, settings } = this.props;
+    const { octave, handleUpdateNotes, handleUpdateSettings, settings } = this.props;
     const { oscillator, envelope } = settings
 
     return (

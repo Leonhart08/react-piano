@@ -15,7 +15,7 @@ $outerRadius: 1rem;
 .left-border{
 	background-color: $black;
 	width: 3.5rem;
-	padding-right: 2rem;
+	padding-right: 1rem;
 	border-radius: $outerRadius 0rem 0rem $outerRadius;
 	background: linear-gradient(to right, $black 55%, #101010 55% 65%, $black 65%);
 }
@@ -24,7 +24,7 @@ $outerRadius: 1rem;
 	width: 3.5rem;
 	border-radius: 0rem $outerRadius  $outerRadius  0.5rem;
 	background: linear-gradient(to right, $black 40%, #101010 30% 50%, $black 50%);
-	padding-left: 2rem;
+	padding-left: 1rem;
 }
 
 //------------------PIANO NOTES SECTION----------------//
@@ -71,18 +71,24 @@ $outerRadius: 1rem;
 //------------------MEDIA QUERY----------------//
 @media only screen and (max-width: 1000px) {
   .container{
+		top: 0;
+		position: sticky;
 		zoom: 75%;
 	}
 }
 
 @media only screen and (max-width: 750px) {
   .container{
+		top: 0;
+		position: sticky;
 		zoom: 60%;
 	}
 }
 
 @media only screen and (max-width: 500px) {
   .container{
+		top: 0;
+		position: sticky;
 		zoom: 45%;
 	}
 }
