@@ -8,7 +8,7 @@ class PianoKeyboard extends React.Component {
     super(props);
     
     this.state = {
-      responsive: window.matchMedia("(min-width: 768px)").matches
+      responsive: window.matchMedia("(min-width: 1200px)").matches
     }
 
     this.playNote = this.playNote.bind(this)
@@ -25,7 +25,7 @@ class PianoKeyboard extends React.Component {
   componentDidMount() {
     window.addEventListener('keydown', (event) => !event.repeat ? this.handleKeyDown(event) : null);
     window.addEventListener('keyup', this.handleKeyUp)
-    window.addEventListener('resize', e => this.setState({ responsive: window.matchMedia("(min-width: 768px)").matches }));
+    window.addEventListener('resize', e => this.setState({ responsive: window.matchMedia("(min-width: 1200px)").matches }));
   }
 
   componentWillUnmount(){
