@@ -7,13 +7,14 @@ class MainDashboard extends React.Component {
     super(props)
   }
 
+  
   render(){
-
+    const { display } = this.props 
     return (
       <div className="main-dashboard">
-        <div className="main-dashboard-title">
+        <div className={`main-dashboard-title${display !== 'piano' ? ' main-dashboard-title--hide' : ''}`}>
           <FaKeyboard color="white" size="3rem" />
-          <span> Use your <strong> Keyboard </strong> to play the piano notes!</span>
+          <span> Use your <strong> Keyboard </strong> to play the piano notes! </span>
         </div>
 
         <div className="main-dashboard-content">

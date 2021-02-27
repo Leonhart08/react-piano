@@ -67,7 +67,7 @@ class PianoKeyboard extends React.Component {
     const { display } = this.props;
     const currentNote = this.mapKeyToIndex(event.key)
 
-    if(currentNote && display === 'piano'){
+    if(currentNote){
       this.toggleActiveNote(currentNote)
       this.playNote(currentNote)
     }
@@ -77,7 +77,7 @@ class PianoKeyboard extends React.Component {
     const { display } = this.props;
     const currentNote = this.mapKeyToIndex(event.key);
 
-    if(currentNote && display === 'piano'){
+    if(currentNote){
       this.toggleActiveNote(currentNote)
       this.stopNote(currentNote)
     }

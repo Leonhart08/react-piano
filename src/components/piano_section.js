@@ -60,7 +60,7 @@ class PianoSection extends React.Component {
   }
 
   render(){
-    const { display } = this.props
+    const { display, collapseDisplay } = this.props
     const { player, keyboard, notes } = this.state
     
     return (
@@ -74,6 +74,7 @@ class PianoSection extends React.Component {
         />
         <PianoDashboard
           display={display}
+          collapse={collapseDisplay}
           player={player}
           keyboard={keyboard}
           notes={notes} 

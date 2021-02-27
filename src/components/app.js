@@ -7,21 +7,22 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentDisplay: 'piano',
+      collapseDisplay: true
     }
   }
 
   render(){
-    const { currentDisplay } = this.state;
-
+    const { currentDisplay, collapseDisplay } = this.state;
     return (
       <div className="app">
         <Header 
           current={currentDisplay}
-          onClick={(display) => this.setState({ currentDisplay: display }) } 
+          onClick={(updatedState) => this.setState({ ...this.state, ...updatedState}) } 
         />
         <div className="wrapper"> 
           <PianoSection 
             display={currentDisplay}
+            collapseDisplay={collapseDisplay}
           />
         </div>
       </div>
