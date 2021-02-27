@@ -6,6 +6,17 @@ import { SCALES } from '../constants/scales.js';
 
 const key2Frequency = (key) => Math.pow(2,(key - 49) / 12) * 440;
 
+export const getSampler = () => new Tone.Sampler({
+	urls: {
+		"C4": "C4.mp3",
+		"D#4": "Ds4.mp3",
+		"F#4": "Fs4.mp3",
+		"A4": "A4.mp3",
+	},
+	release: 10,
+	baseUrl: "https://tonejs.github.io/audio/salamander/",
+}).toDestination()
+
 export const getChordNotes = (noteIndex, chordIndex) => {
 	const chord = CHORDS[chordIndex]
 
@@ -55,7 +66,7 @@ export const buildNotes = (octave, n = 12, options={}) => {
 				label: `${TONES[(keyPosition - 4) % 12]}${Math.floor(((keyPosition - 4 )/12)) + 1}`,
 				active: false,
 				status: 'normal',
-				synth: new Tone.Synth(options).toDestination()
+				synth: getSampler()
 			}
 		});
 }
@@ -130,54 +141,7 @@ export const updateNotes = (notes, octave) => {
 	})
 }
 
-export const updateSynthSettings = (synth, settings) => {
-	const { envelope, oscillator } = settings
-	const { attack, decay, sustain, release } = envelope 
-	const { type } = oscillator
-	if(envelope){
-		synth.envelope.attack = attack.current
-		synth.envelope.decay = decay.current
-		synth.envelope.sustain = sustain.current
-		synth.envelope.release = release.current
-	}
 
-	if(oscillator){
-		synth.oscillator.type = type
-	}
-	
-	return synth
-}
-
-export const updatePolySynthSettings = (synth, settings) => {
-	const { envelope, oscillator } = settings
-	const { attack, decay, sustain, release } = envelope 
-	const { type } = oscillator
-
-	synth.set({
-		envelope: {
-			attack: attack.current,
-			decay: decay.current,
-			sustain: sustain.current,
-			release: release.current
-		},
-		oscillator: {
-			type: type
-		}
-	})
-
-	return synth
-}
-
-export const updateNotesSynth = (notes, settings) => {
-
-	return notes.map((note, _) => {
-		const { synth } = note
-		return { 
-			...note,	
-			synth: updateSynthSettings(synth, settings)
-		}
-	})
-}
 
 
 

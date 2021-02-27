@@ -18,7 +18,7 @@ class App extends React.Component {
         <Header 
           current={currentDisplay}
           onClick={(display) => this.setState({ currentDisplay: display }) } 
-          />
+        />
         <div className="wrapper"> 
           <PianoSection 
             display={currentDisplay}

@@ -181,3 +181,75 @@
   font-size: 1.25rem;
   margin-bottom: 15px;
 }
+
+//------ MAIN DASHBOARD -----------//
+
+.main-dashboard{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 3px;
+}
+
+.main-dashboard-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  svg {
+    margin: 0px 15px;
+  }
+  span {
+    font-size: 2rem;
+    letter-spacing: 1px;
+    color : #E0E0E0;
+    text-align: center;
+  }
+}
+
+.main-dashboard-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  min-height: 500px;
+  margin: 2rem 0;
+  padding: 2rem;
+  width: 80%;
+  border: 4px dashed #E0E0E0;
+  border-radius: 10px;
+
+  .main-dashboard-content-title{
+    span{
+      color : #E0E0E0;
+      font-size: 3rem;
+    }
+  }
+
+  .main-dashboard-content-description{
+    margin: 2rem 0;
+    line-height: 2rem;
+    span{
+      color : #E0E0E0;
+      font-size: 1.5rem;
+    }
+  }
+
+  .main-dashboard-content-references{
+    width: 100%;
+    margin: 2rem 0; 
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    img{
+      height: 150px;
+      width: auto;
+      margin: 0px 50px;
+      cursor: pointer;
+    }
+  }
+}

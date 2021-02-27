@@ -11,17 +11,22 @@ class ScalesDashboard extends React.Component {
 
     this.playNote = this.playNote.bind(this)
   }
+
+  componentDidMount(){
+    const { keyboard, handleUpdateScale } = this.props
+    const { root: noteIndex } = keyboard
+    handleUpdateScale({ noteIndex: noteIndex, scaleIndex: 0 })
+  }
   
   playNote(){
     const { player, keyboard } = this.props
     const { scale, root, octave } = keyboard
-    const chordFreq = getScaleFrequencies(root, scale, octave )
+    const scaleFreq = getScaleFrequencies(root, scale, octave )
     const now = Tone.now()
 
-    chordFreq.map((freq, index) => {
-      player.triggerAttackRelease(freq, 0.5, now + index/2)
+    scaleFreq.map((freq, index) => {
+      player.triggerAttackRelease(freq, 0.5, now + index/5)
     })
-    //player.triggerRelease(chordFreq, now + chordFreq.length/2  );
   }
 
   render(){

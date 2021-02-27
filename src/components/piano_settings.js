@@ -2,7 +2,6 @@ import React from 'react';
 import { INSTRUMENTS as instrumentList }  from '../constants/instruments.js';
 import { customSelectStyles } from '../constants/custom_select_class.js';
 import Select from 'react-select';
-import SettingsSlider from './settings_slider.js'
 
 class PianoSettings extends React.Component {
   constructor(props) {
@@ -16,39 +15,23 @@ class PianoSettings extends React.Component {
   }
 
   render() {
-    const { instrumentsOptions } = this.state
-    const { octave, handleUpdateNotes, handleUpdateSettings, settings } = this.props;
-    const { oscillator, envelope } = settings
+    const { octave, handleUpdateNotes } = this.props;
 
     return (
       <div className="options-section">
         <div className="wheels-section">
-          {Object.entries(envelope).map(([name, values]) => {
-            return (
-              <SettingsSlider
-                key={name}
-                name={name}
-                values={values} 
-                onChange={(target) => { 
-                  handleUpdateSettings({
-                    ...settings, 
-                    envelope: { ...envelope, [name]: { ...envelope[name], current: target }}
-                    })
-                  }
-                }
-              />)
-            })
-          }
+          <div className="wheel-item"/>
+          <div className="wheel-item"/>
         </div>
         <div className="instruments-section">
-          <Select 
-            options={instrumentsOptions}
+          {<Select 
+            options={{label: 'piano', key: 'piano'}}
             placeholder={'-'}
-            value={instrumentsOptions.find(instrument => (instrument.label === oscillator.type))}
+            value={[{label: 'piano', key: 'piano'}].find(instrument => (instrument.label === 'piano'))}
             isSearchable={false}
             styles={customSelectStyles}
-            onChange={(event) => handleUpdateSettings({...settings, oscillator: { type : event.value }})}
           />
+          }
         </div>
         <div className="buttons-section">
           <div 

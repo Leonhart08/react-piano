@@ -19,13 +19,17 @@
 		padding: 16px 0px;
 		width: 140px;
 		cursor: pointer;
+		transition: color 0.3s;
 	}
 
 	.navigator-item:hover{
 		color: lighten(#DD2C00, 20);
+		transition: color 0.3s;
 	}
 
-	.active {
-		color: lighten(#DD2C00, 20);
+	.active, .active:hover  {
+		color: white;
+		background-color: lighten(#DD2C00, 20);
+		transition: color 0.3s;
 	}
 }

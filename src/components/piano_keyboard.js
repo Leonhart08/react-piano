@@ -1,10 +1,11 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-import { updateNotes, updateNotesSynth, updatePolySynthSettings } from '../helpers/notes.js';
 import PianoKey from './piano_key.js';
 import PianoSettings from './piano_settings.js';
 import Settings from './icons/settings'
+
+import { updateNotes } from '../helpers/notes.js';
 
 class PianoKeyboard extends React.Component {
   constructor(props){
@@ -24,7 +25,6 @@ class PianoKeyboard extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleKeyUp = this.handleKeyUp.bind(this)
     this.handleUpdateNotes = this.handleUpdateNotes.bind(this)
-    this.handleUpdateSettings = this.handleUpdateSettings.bind(this)
   }
 
   componentDidMount() {
@@ -52,17 +52,14 @@ class PianoKeyboard extends React.Component {
   }
 
   toggleActiveNote(currentNote) {
-    const { keyboard, handleChange } = this.props
-    const { notes } = keyboard
+    const { notes, keyboard, handleChange } = this.props
 
     handleChange({
-      keyboard: {
-        ...keyboard,
-        notes: notes.map(note => ({
+      keyboard: { ...keyboard},
+      notes: notes.map(note => ({
         ...note, 
         ...(note.label === currentNote.label && { active: !note.active })
         }))
-      }
     });
   }
 
@@ -103,42 +100,26 @@ class PianoKeyboard extends React.Component {
   }
 
   mapKeyToIndex(key){
-    const { keyboard } = this.props
-    const { notes } = keyboard
+    const { notes } = this.props
     return notes.find(note => key === note.keyMap);
   }
 
   handleUpdateNotes(octave){
-    const { keyboard, handleChange } = this.props;
-    const { notes } = keyboard
+    const { keyboard, notes, handleChange } = this.props;
 
     return handleChange({
+      notes: updateNotes(notes, octave),
       keyboard: {
         ...keyboard,
         octave: octave,
-        notes: updateNotes(notes, octave)
-      }
-    });
-  }
-
-  handleUpdateSettings(settings){
-    const { keyboard, player, handleChange } = this.props;
-    const { notes } = keyboard
-
-    return handleChange({
-      player: updatePolySynthSettings(player, settings),
-      keyboard: {
-        ...keyboard,
-        notes: updateNotesSynth(notes, settings),
-        settings: settings,
       }
     });
   }
 
   render() {
     const { responsive, settingsModal } = this.state
-    const { display, keyboard } = this.props;
-    const { octave, notes, settings, showNoteLabel, showKeyLabel } = keyboard;
+    const { display, keyboard, notes } = this.props;
+    const { octave, settings, showNoteLabel, showKeyLabel } = keyboard;
 
     return (
       <div className="container">
@@ -149,7 +130,6 @@ class PianoKeyboard extends React.Component {
               octave={octave}
               settings={settings}
               handleUpdateNotes={this.handleUpdateNotes}
-              handleUpdateSettings={this.handleUpdateSettings}
             />)
           }
           <Modal
@@ -179,11 +159,9 @@ class PianoKeyboard extends React.Component {
                   octave={octave}
                   settings={settings}
                   handleUpdateNotes={this.handleUpdateNotes}
-                  handleUpdateSettings={this.handleUpdateSettings}
                 />
               </div>
           </Modal>
-
         <div className="piano-section">
           <div className="top-section">
             {responsive !== 'desktop' && 

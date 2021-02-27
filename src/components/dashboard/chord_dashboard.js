@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Tone from 'tone'
 import { TONES } from '../../constants/tones'
 import { CHORDS } from '../../constants/chords'
 import Play from './../icons/play'
@@ -11,12 +12,22 @@ class ChordDashboard extends React.Component {
     this.playNote = this.playNote.bind(this)
   }
   
+  componentDidMount(){
+    const { keyboard, handleUpdateChord } = this.props
+    const { root: noteIndex } = keyboard
+    handleUpdateChord({ noteIndex: noteIndex, chordIndex: 0 })
+  }
+
   playNote(){
     const { player, keyboard } = this.props
     const { chord, root, octave } = keyboard
     const chordFreq = getChordFrequencies(root, chord, octave )
+    //player.triggerAttackRelease(chordFreq, 1);
+    const now = Tone.now()
+    chordFreq.map((freq, index) => {
+      player.triggerAttackRelease(freq, 0.5, now + index/20)
+    })
 
-    player.triggerAttackRelease(chordFreq, 1);
   }
 
   render(){

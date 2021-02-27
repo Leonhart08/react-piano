@@ -1,5 +1,6 @@
 html {
   width: 100vw;
+  overflow-x: hidden;
 }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,7 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #1D1D1D;
-  zoom: 90%;
+  zoom: 80% //TODO: fix app sizes
 }
 
 body,
