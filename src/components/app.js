@@ -1,6 +1,8 @@
 import React from 'react';
-import PianoSection from './piano_section';
+
 import Header from './header';
+import PianoSection from './piano_section';
+import BackToTopButton from './back_to_top_button';
 
 class App extends React.Component {
   constructor(props){
@@ -25,6 +27,7 @@ class App extends React.Component {
             collapseDisplay={collapseDisplay}
           />
         </div>
+        <BackToTopButton />
       </div>
     ); 
   }

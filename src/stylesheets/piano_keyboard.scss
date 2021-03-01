@@ -71,23 +71,18 @@ $outerRadius: 1rem;
 //------------------MEDIA QUERY----------------//
 @media only screen and (max-width: 1000px) {
   .container{
-		top: 0;
-		position: sticky;
 		zoom: 75%;
 	}
 }
 
 @media only screen and (max-width: 750px) {
   .container{
-		top: 0;
 		zoom: 60%;
 	}
 }
 
 @media only screen and (max-width: 500px) {
   .container{
-		top: 0;
-		position: sticky;
 		zoom: 45%;
 	}
 }

@@ -1,15 +1,20 @@
 import React from 'react';
 import { FaKeyboard } from 'react-icons/fa';
-import Keyboard from './../icons/play'
+import { init } from 'ityped'
 
 class MainDashboard extends React.Component {
   constructor(props){
     super(props)
   }
 
-  
+  componentDidMount(){
+    const myElement = document.querySelector('#contentTitle')
+    init(myElement, { cursorChar: "_", loop: false, showCursor: true, strings: [' > React Piano Keyboard '] })
+  }
+
   render(){
     const { display } = this.props 
+
     return (
       <div className="main-dashboard">
         <div className={`main-dashboard-title${display !== 'piano' ? ' main-dashboard-title--hide' : ''}`}>
@@ -19,7 +24,7 @@ class MainDashboard extends React.Component {
 
         <div className="main-dashboard-content">
           <div className="main-dashboard-content-title">
-            <span> > React Piano Keyboard _ </span>
+            <span id="contentTitle"></span>
           </div>
 
           <div className="main-dashboard-content-description">

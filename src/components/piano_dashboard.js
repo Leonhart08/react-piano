@@ -1,6 +1,6 @@
 import React from 'react';
 import {Collapse} from 'react-collapse';
-import MainDashboard from './dashboard/piano_dashboard'
+import MainDashboard from './dashboard/main_dashboard'
 import ChordDashboard from './dashboard/chord_dashboard'
 import ScalesDashboard from './dashboard/scales_dashboard'
 
