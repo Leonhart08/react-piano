@@ -27,7 +27,7 @@ export const CHORDS = [
     name: 'minor 7th',
     suffix: 'm7',
 		type: 'diatonic',
-		value: [0, 3, 7, 11],
+		value: [0, 3, 7, 10],
 	},
 	{
     name: '6th',
