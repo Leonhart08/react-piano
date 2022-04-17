@@ -15,6 +15,7 @@ class App extends React.Component {
 
   render(){
     const { currentDisplay, collapseDisplay } = this.state;
+
     return (
       <div className="app">
         <Header 

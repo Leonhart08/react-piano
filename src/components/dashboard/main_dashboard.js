@@ -34,7 +34,7 @@ class MainDashboard extends React.Component {
           </div>
 
           <div className="main-dashboard-content-references">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" />
             <img src="https://avatars.githubusercontent.com/u/11019186?s=280&v=4" />
           </div>
         </div>

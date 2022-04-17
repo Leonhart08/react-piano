@@ -1,7 +1,5 @@
 import React from 'react';
 import { INSTRUMENTS as instrumentList }  from '../constants/instruments.js';
-import { customSelectStyles } from '../constants/custom_select_class.js';
-import Select from 'react-select';
 
 class PianoSettings extends React.Component {
   constructor(props) {
