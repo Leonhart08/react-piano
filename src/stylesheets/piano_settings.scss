@@ -29,20 +29,21 @@ $outerRadius: 1rem;
 		}
 	}
 
-	.instruments-section{
+	.instruments-section {
+		display:flex;
+		flex-direction: row;
+		justify-content: center;
+		font-family: monospace;
+		text-transform: uppercase;
+		user-select: none;
+		align-items: center;
 		margin-top: 0.75rem;
 		width: 15rem;
-    border-radius: 5px;
+		height: 35px;
+    	border-radius: 5px;
 		background-color: black;
-		.instrument-select {
-			padding: 10px 15px;
-			span {
-				color: #76FF03;
-    		font-size: 14px;
-    		letter-spacing: 3px;
-    		text-transform: uppercase;
-			}
-		}
+		color: yellowgreen;
+		letter-spacing: 2px;
 	}
 
 	.buttons-section{

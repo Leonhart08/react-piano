@@ -24,14 +24,7 @@ class PianoSettings extends React.Component {
           <div className="wheel-item"/>
         </div>
         <div className="instruments-section">
-          {<Select 
-            options={{label: 'piano', key: 'piano'}}
-            placeholder={'-'}
-            value={[{label: 'piano', key: 'piano'}].find(instrument => (instrument.label === 'piano'))}
-            isSearchable={false}
-            styles={customSelectStyles}
-          />
-          }
+          Piano
         </div>
         <div className="buttons-section">
           <div 

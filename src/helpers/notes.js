@@ -8,10 +8,12 @@ const key2Frequency = (key) => Math.pow(2,(key - 49) / 12) * 440;
 
 export const getSampler = () => new Tone.Sampler({
 	urls: {
+		"C3": "C3.mp3",
+		"F#3": "Fs3.mp3",
 		"C4": "C4.mp3",
-		"D#4": "Ds4.mp3",
 		"F#4": "Fs4.mp3",
-		"A4": "A4.mp3",
+		"C5": "C5.mp3",
+		"F#5": "Fs5.mp3",
 	},
 	release: 10,
 	baseUrl: "https://tonejs.github.io/audio/salamander/",

@@ -63,6 +63,7 @@ class PianoSection extends React.Component {
     const { display, collapseDisplay } = this.props
     const { player, keyboard, notes } = this.state
     
+    console.log('this.state', this.state)
     return (
       <div className="wrapper"> 
         <PianoKeyboard 

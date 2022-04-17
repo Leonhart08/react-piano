@@ -71,7 +71,7 @@ class ChordDashboard extends React.Component {
               return ( <div 
                 className={`list-item ${chordIndex === index ? 'list-item--active' : ''}`} 
                 onClick={()=> { handleUpdateChord({ chordIndex: index}) }} >
-                  {`${TONES[noteIndex]}${chord.suffix}`}
+                  {`${TONES[noteIndex]} ${chord.suffix}`}
                 </div>
               )
             })}
